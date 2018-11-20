@@ -8,3 +8,6 @@
 - composer install
 - php artisan migrate
 - php artisan db:seed
+
+
+![Alt text](read1.png)
