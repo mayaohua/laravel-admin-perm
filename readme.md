@@ -6,7 +6,7 @@
 - [element-ui](http://element.eleme.io).
 - [Laravel-permission](https://github.com/spatie/laravel-permission).
 
-## 如何安装
+## How To Install
  
 - composer install
 - php artisan migrate
