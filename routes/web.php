@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get(config('webset.web_indexname'), function () {
+    return redirect(config('webset.web_indexname') . "/index");
+}); //跳转到后台
 
 Route::get('/', function () {
     return view('home');

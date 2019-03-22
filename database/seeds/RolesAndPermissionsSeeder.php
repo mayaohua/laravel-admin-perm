@@ -18,7 +18,7 @@ class RolesAndPermissionsSeeder extends Seeder
         app()['cache']->forget('spatie.permission.cache');
 
         // 创建后台人员权限
-        $node = Permission::create(['name' => 'admin.adminuser', 'show_name'=>'管理员管理', 'icon'=>'fa fa-user-secret',  'level' => 1]);
+        $node = Permission::create(['name' => 'admin.adminuser', 'show_name'=>'管理员管理', 'icon'=> 'fas fa-user-secret',  'level' => 1]);
         $child = Permission::create(['name'=>'admin.adminuser.index','show_name' => '管理员列表', 'pid' => $node['id'], 'level' => 2]);
 
         Permission::create(['name'=>'admin.adminuser.create','show_name' => '添加管理员', 'pid' => $node['id'], 'level' => 2]);
@@ -28,7 +28,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name'=>'admin.adminuser.show', 'show_name' => '查看管理员','pid' => $child['id'], 'level' => 3]);
 
         // 创建角色权限
-        $node = Permission::create(['name' => 'admin.role', 'show_name'=>'角色管理', 'icon'=>'el-icon-menu',  'level' => 1]);
+        $node = Permission::create(['name' => 'admin.role', 'show_name'=>'角色管理', 'icon'=> 'fas fa-arrows-alt',  'level' => 1]);
         $child = Permission::create(['name'=>'admin.role.index','show_name' => '角色列表', 'pid' => $node['id'], 'level' => 2]);
 
         Permission::create(['name'=>'admin.role.create','show_name' => '添加角色', 'pid' => $node['id'], 'level' => 2]);
@@ -67,14 +67,16 @@ class RolesAndPermissionsSeeder extends Seeder
 
 
 
-        //分派公共的权限
+        ///分派公共的权限
         //控制台
-        $node = Permission::create(['show_name' => '控制台','icon' => 'el-icon-setting', 'name'=>'admin.index', 'pid' => 0, 'level' => 1]);
+        $node = Permission::create(['show_name' => '控制台','icon' => 'fas fa-cog', 'name'=>'admin.index', 'pid' => 0, 'level' => 1]);
+        Permission::create(['show_name' => '修改密码','name'=>'admin.index.password', 'pid' => $node['id'], 'level' => 2]);
+        Permission::create(['show_name' => '身份验证','name'=>'admin.index.authvalidate', 'pid' => $node['id'], 'level' => 3]);    //不需要放入公共权限
         Permission::create(['show_name' => '财务数据','name'=>'admin.index.caiwu', 'pid' => $node['id'], 'level' => 3]);
         Permission::create(['show_name' => '人员数据','name'=>'admin.index.renyuan', 'pid' => $node['id'], 'level' => 3]);
 
         foreach (AdminUser::all() as $user){
-            $user->givePermissionTo(['admin.index','admin.index.caiwu','admin.index.renyuan']);
+            $user->givePermissionTo(['admin.index','admin.index.caiwu','admin.index.renyuan','admin.index.password']);
         }
 
 

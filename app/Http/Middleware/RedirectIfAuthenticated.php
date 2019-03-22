@@ -17,8 +17,8 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/admin/home');
+        if (Auth::guard($guard)->check() && Auth::user()->hasVerifiedEmail()){
+             return redirect('/'.config(' w ebset.web_indexname'));
         }
 
         return $next($request);

@@ -17,12 +17,13 @@ class AdminUsersTableSeeder extends Seeder
             'name' => config('admin.sup.name'),
             'email' => config('admin.sup.email'),
             'password' => bcrypt(config('admin.sup.password')),
+            'email_verified_at' => Carbon::now(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
         DB::table('admin_users')->insert([
             'name' => 'root',
-            'email' => 'root@root.com',
+            'email' => 'root@163.com',
             'password' => bcrypt('root'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

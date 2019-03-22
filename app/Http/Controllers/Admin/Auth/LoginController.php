@@ -18,7 +18,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers;
 
     /**
@@ -35,12 +34,18 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->redirectTo = '/'.config('webset.web_indexname').'/index';
         $this->middleware('guest')->except('logout');
     }
 
     public function loggedOut(Request $request){
 
-        return redirect('/admin/login');
+        return redirect('/'.config('webset.web_indexname').'/login');
+    }
+
+    public function showLoginForm()
+    {
+        return view('admin.auth.login');
     }
 
 }
