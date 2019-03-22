@@ -4,7 +4,7 @@
 - [Laravel-permission](https://github.com/spatie/laravel-permission).
 
 ## How To Install
- 
+- cp .env.example .env
 - composer install
 - php artisan migrate
 - php artisan db:seed
